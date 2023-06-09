@@ -1,7 +1,6 @@
 # a_bfs.py
 ## author - nick s.
 
-
 import a_bst as BST
 from a_bst import Node, Tree
 
@@ -24,17 +23,20 @@ BST.preorder_traversal(tree.root)
 start: Node = tree.root
 search_space: list = [start]
 
-# step 3 while the search space is empty...
+# step 3 while the search space is not empty...
 while len(search_space) > 0:
     # remove a node from the search space (FIFO)
-    current: Node = search_space.pop( None ) # TODO
+    current: Node = search_space.pop()
 
     # if a None child is not being processed...
     if current != None:
         # print the node's value
         print(current.value)
 
-        # add the left and right to the search space (FILO)
-        search_space = None # TODO
+        # add the right and left to the search space (LIFO)
+        if current.right is not None:
+            search_space.append(current.right)
+        if current.left is not None:
+            search_space.append(current.left)
     # end if
 # end loop
